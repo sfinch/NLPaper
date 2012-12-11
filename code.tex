@@ -1,0 +1,20 @@
+\appendix
+\section{Code}
+
+\begin{verbatim}
+
+n = 1024;
+m = CellularAutomaton[126, {{1}, 0}, n];
+sumBlacks = Total[m, {2}]; 
+Do[
+  sumBlacks[[i]] = sumBlacks[[i]]/(2*(i - 1) + 1)
+  , {i, 1, n + 1}
+]
+
+ArrayPlot[m, Frame->False]
+ListLinePlot[Take[sumBlacks, n - 1], PlotRange -> All]
+ListLinePlot[Abs[Take[Fourier[sumBlacks], 100]],  PlotRange -> {0, 1},
+  InterpolationOrder -> 2]
+
+
+\end{verbatim}
