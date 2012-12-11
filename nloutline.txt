@@ -1,0 +1,22 @@
+Elementary Cellular Automata
+
+1. Intro
+ - What is a ECA
+ - Rules and rule numbering
+ - Examples (many figures)
+
+2. Simple Analysis
+ - Define observable: density of black blocks
+ - Show plot of density as function of time
+ - FFT and Autocorrelation of density for different rules
+ - Periodic Boundary Conditions
+
+3. ECA as Discrete Maps
+ - PBC
+ - Finite width (FBC?)
+ - How to define the maps
+ - Figures of mapping functions
+ - Show some cycles
+ - Period of limit cycle
+
+4. Conclusion
