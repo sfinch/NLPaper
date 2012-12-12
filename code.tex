@@ -12,9 +12,10 @@ Do[
 ]
 
 ArrayPlot[m, Frame->False]
-ListLinePlot[Take[sumBlacks, n - 1], PlotRange -> All]
-ListLinePlot[Abs[Take[Fourier[sumBlacks], 100]],  PlotRange -> {0, 1},
-  InterpolationOrder -> 2]
+ListLinePlot[sumBlacks, PlotRange -> All, 
+  AxesLabel -> {"Time step", "Density"}]
+ListLinePlot[Abs[Take[Fourier[sumBlacks], 150]],  PlotRange -> {0, 1},
+  InterpolationOrder -> 2, AxesLabel -> {"Time steps", "FFT"}]
 
 
 \end{verbatim}
