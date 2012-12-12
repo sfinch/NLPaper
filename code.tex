@@ -1,6 +1,7 @@
 \appendix
 \section{Code}
 
+\subsection{Density and FFT in \sc{Mathematica}}
 \begin{verbatim}
 
 n = 1024;
@@ -17,5 +18,95 @@ ListLinePlot[sumBlacks, PlotRange -> All,
 ListLinePlot[Abs[Take[Fourier[sumBlacks], 150]],  PlotRange -> {0, 1},
   InterpolationOrder -> 2, AxesLabel -> {"Time steps", "FFT"}]
 
+\end{verbatim}
+
+\subsection{Mapping with PBC in \sc{C++}}
+\begin{verbatim}
+
+// PBC.cxx
+#include <stdlib.h>
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+// converts a long integer to a vector of booleans.
+void LongToVec(const long &x, vector<bool> &v) {
+
+    // make sure v is the right size.
+    // this should not be time consuming if it started off with the
+    // correct size.
+    v.resize(sizeof(x)*4);
+
+    long window = 1;
+    for (int i = 0; i < v.size(); i++) {
+        // set bit i to true if x's ith bit is also true.
+        v[i] = x & window;
+
+        // move the window left one bit.
+        window <<= 1;
+    }
+
+    return;
+}
+
+// converts a vector of booleans to a long integer.
+long VecToLong(const vector<bool> &v) {
+
+    long x = 0;
+    long window = 1;
+    for (int i = 0; i < v.size(); i++) {
+        // set x bit i to true if v's ith bit is also true.
+        x |= v[i] ? window: 0;
+
+        // move the window left one bit.
+        window <<= 1;
+    }
+
+    return x;
+}
+
+bool ApplyRule(char rule, char prev) {
+    return rule & (0x001 << prev);
+}
+
+long GetMap(char rule, long input, int nmax) {
+    // initialize the vectors.
+    vector<bool> v, vout;
+    LongToVec(input, v);
+    vout.resize(v.size(), false);
+
+    char prev;
+    for (int i = 1; i < nmax-1; i++) {
+        // put the three neighboring blocks from the previous
+        // iteration into a char for rule-applying.
+        prev = (v[i+1] << 2) | (v[i] << 1) | v[i-1];
+
+        // apply the rule and store the resulting bit in vout.
+        vout[i] = ApplyRule(rule, prev);
+    }
+
+    // deal with i = 0 case.
+    prev = (v[1] << 2) | (v[0] << 1) | v[nmax-1];
+    vout[0] = ApplyRule(rule, prev);
+
+    // deal with i = nmax-1 case.
+    prev = (v[0] << 2) | (v[nmax-1] << 1) | v[nmax-2];
+    vout[nmax-1] = ApplyRule(rule, prev);
+
+    // convert vout back to a long integer.
+    return VecToLong(vout);
+}
+
+int main(int argc, char *argv[]) {
+    char rule = atoi(argv[1]);
+    int n = atoi(argv[2]);
+
+    int max = 1 << n;
+    for (int i = 0; i < max; i++)
+        cout << i << ", " << GetMap(rule, i, n) << endl;
+
+    return 0;
+}
 
 \end{verbatim}
