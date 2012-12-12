@@ -1,4 +1,5 @@
 LATEX    = latex
+# BIBTEX   = bibtex
 DVIPS    = dvips
 
 BASENAME = main
@@ -8,6 +9,7 @@ default: testlatex
 testlatex:
 	latex  ${BASENAME}
 	latex  ${BASENAME}
+	# bibtex ${BASENAME}
 	latex  ${BASENAME}
 	latex  ${BASENAME}
 	dvipdf -dPDFSETTINGS=/prepress ${BASENAME}
@@ -15,6 +17,7 @@ testlatex:
 testpdflatex:
 	pdflatex  ${BASENAME}
 	pdflatex  ${BASENAME}
+	# bibtex    ${BASENAME}
 	pdflatex  ${BASENAME}
 	pdflatex  ${BASENAME}
 
@@ -25,8 +28,9 @@ testpdflatex:
 %.dvi:	%.tex 
 	$(LATEX) $<
 
-%.bbl:	%.tex
+%.bbl:	%.tex *.bib
 	$(LATEX) $*
+	# $(BIBTEX) $*
 
 %.ps:	%.dvi
 	$(DVIPS) $< -o $@
