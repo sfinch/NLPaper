@@ -1,5 +1,5 @@
 LATEX    = latex
-# BIBTEX   = bibtex
+BIBTEX   = bibtex
 DVIPS    = dvips
 
 BASENAME = main
@@ -9,7 +9,7 @@ default: testlatex
 testlatex:
 	latex  ${BASENAME}
 	latex  ${BASENAME}
-	# bibtex ${BASENAME}
+	bibtex ${BASENAME}
 	latex  ${BASENAME}
 	latex  ${BASENAME}
 	dvipdf -dPDFSETTINGS=/prepress ${BASENAME}
@@ -17,7 +17,7 @@ testlatex:
 testpdflatex:
 	pdflatex  ${BASENAME}
 	pdflatex  ${BASENAME}
-	# bibtex    ${BASENAME}
+	bibtex    ${BASENAME}
 	pdflatex  ${BASENAME}
 	pdflatex  ${BASENAME}
 
