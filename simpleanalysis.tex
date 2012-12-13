@@ -9,10 +9,9 @@ more meaningful.
 In order to study the general behavior of the ECA systems, we wanted
 to define an observable which collapsed these $n$ degrees of freedom
 into one number whose value could be tracked over many time steps.
-However, there are only so many such observables for such simple
-systems.
-One ought to choose an observable whose value is meaningful for a wide
-variety of initial conditions and boundary condition constraints.
+However, there are only so many such variables for such simple
+systems value is meaningful for a wide variety of initial conditions
+and boundary condition constraints.
 
 
 \subsection{Defining an Observable}
@@ -39,7 +38,7 @@ number of white blocks on either side and constrained our studies to
 rules which allow black blocks to spread by only one site per time
 step.
 Under these conditions there can be no black blocks outside of the
-triangle with width $w$ defined by $w = 2t+1$, where $t$ is the
+triangle with width $w(t)$ defined by $w(t) = 2t+1$, where $t$ is the
 number of time steps since the initial state.
 Treating $2t+1$ as the effective size of the Cellular Automaton at a
 given time, the density of black blocks can be redefined as
@@ -47,10 +46,6 @@ given time, the density of black blocks can be redefined as
 \begin{equation}
     \rho = \frac{n_{black}}{(2t+1)}.
 \end{equation}
-
-% TODO
-This observable has proved to be 
-
 
 \subsection{Density Time Evolution}
 For ECAs with periodic or fixed boundary conditions, there is a
@@ -73,12 +68,12 @@ evolution for infinite ECAs.
 Clearly not all ECA rules are created equally, and several of them are
 not suitable for a study such as this.
 For instance, with an initial state of one black block the Cellular
-Automaton governed by rule 254 yields a string of black blocks with
-width $2t+1$ at time step $t$.
+Automaton governed by rule 254 (Figure~\ref{rule254}) yields a string
+of black blocks with width $2t+1$ at time step $t$.
 This ECA will have a constant black block density of 1 given the above
 definition.
 However, most rules yield an interesting time evolution.
-We will focus on two rules in particular, one (rule 126) of which is
+We will focus on the two rules mentioned previously, one (rule 126) of which is
 very clearly periodic and has a well-defined structure and one (rule
 30) whose dynamics appear to be random and incoherent.
 The density as a function of time for rule 126 can be found in
