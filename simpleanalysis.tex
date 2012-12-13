@@ -56,7 +56,6 @@ This observable has proved to be
 
 
 \subsection{Density Time Evolution}
-% TODO MAXIMUM
 For ECAs with periodic or fixed boundary conditions, there is a
 maximum number of global states available to the system: if there are
 $n$ sites and each must have a value of 0 or 1, there will be $2^n$
@@ -68,14 +67,80 @@ function of time will be periodic.
 However, ECAs with no boundaries have access to an infinite number of
 states and therefore can exhibit a much richer density spectrum.
 Any observed periodic behavior is significant because the system is
-not confined to a finite number of states, and any periodicity in the
+not confined to a finite number of states, and periodicity in the
 density can only come about due to the intrinsic properties of a
 particular rule.
+Because of this, we have chosen to present the density's time
+evolution for infinite ECAs.
 
 Clearly not all ECA rules are created equally, and several of them are
-not suitable for a study such as this 
-For 
+not suitable for a study such as this.
+For instance, with an initial state of one black block the Cellular
+Automaton governed by rule 254 yields a string of black blocks with
+width $2t+1$ at time step $t$.
+This ECA will have a constant black block density of 1 given the above
+definition.
+However, most rules yield an interesting time evolution.
+We will focus on two rules in particular, one (rule 126) of which is
+very clearly periodic and has a well-defined structure and one (rule
+30) whose dynamics appear to be random and incoherent.
+The density as a function of time for rule 126 can be found in
+Figure~\ref{126density}; that for rule 30 can be found in
+Figure~\ref{30density}.
 
- - FFT and Autocorrelation of density for different rules
 
- - Periodic Boundary Conditions
+\begin{figure}
+    \begin{minipage}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{126density.eps}
+        \caption{\label{126density} The Density of rule 126 plotted as a function of time step}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{126FFT.eps}
+        \caption{\label{126FFT} The Fast Fourier Transform (FFT) of
+        rule 126's density, showing sharp peaks at 2$^n$.}
+    \end{minipage}
+\end{figure}
+
+
+\begin{figure}
+    \begin{minipage}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{30density.eps}
+        \caption{\label{30density} The Density of rule 30 plotted as a function of time step}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{30FFT.eps}
+        \caption{\label{30FFT} The FFT of rule 30's density. The flat transform is the same as white noise.}
+    \end{minipage}
+\end{figure}
+
+
+\subsection{Periodic Density Analysis}
+In order to establish whether or not an ECA's black block density
+exhibits periodicity, we chose to look at its the Discrete Fourier
+Transform (DFT), specifically the Fast Fourier Transform (FFT), as
+well as its Autocorrelation.
+The DFT of a sequence of values is defined as
+
+\begin{equation}
+    \rho_p = \sum_{t=0}^{T-1} \rho_t e^{-2\pi i pt/T} \qquad t =
+    0, 1,\ \ldots\ T,
+\end{equation}
+
+\noindent where $\rho_t$ is the black block density at a time step
+$t$, $T$ is the total number of time steps, and $p$ is an integer
+value of time steps which labels the discrete frequency
+$\omega_p = p/T$.
+Values of $p$ with a high coefficient $\rho_p$ correspond to strong
+sinusoidal motion with a frequency of $\omega_p$.
+
+From Figure~\ref{126FFT} we can see that rule 126 has clear sinusoidal
+behavior, especially for values of $p$ that are a power of 2 ($2^n$
+with integer n).
+However, Figure~\ref{30FFT} shows that the opposite is true for rule
+30.
