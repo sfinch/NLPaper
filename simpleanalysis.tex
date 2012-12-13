@@ -1,6 +1,4 @@
-\section{Simple Analysis}
-
-% TODO BETTER TITLE
+\section{Analysis of a Simple System Observable}
 
 An Elementary Cellular Automaton with $n$ sites per time step has
 $n$ degrees of freedom.
@@ -38,12 +36,12 @@ definition of the black block density is not well-defined.
 However, because the ECA rules only allow the state of a block to
 depend on the previous states of its immediate neighbors, we chose
 an initial condition of one black block surrounded by an infinite
-number of white blocks on either side and constrainedourselves to
+number of white blocks on either side and constrained our studies to
 rules which allow black blocks to spread by only one site per time
 step.
-Under these conditions there can be no black blocks outside the sites
-inside the triangle defined by $2t+1$, where $t$ is the number of time
-steps since the initial state.
+Under these conditions there can be no black blocks outside of the
+triangle with width $w$ defined by $w = 2t+1$, where $t$ is the
+number of time steps since the initial state.
 Treating $2t+1$ as the effective size of the Cellular Automaton at a
 given time, the density of black blocks can be redefined as
 
@@ -93,14 +91,14 @@ Figure~\ref{30density}.
     \begin{minipage}[b]{0.49\textwidth}
         \centering
         \includegraphics[width=\textwidth]{126density.eps}
-        \caption{\label{126density} The Density of rule 126 plotted as a function of time step}
+        \caption{\label{126density} The black block density of rule 126 plotted as a function of time step}
     \end{minipage}
     \hspace{0.5cm}
     \begin{minipage}[b]{0.49\textwidth}
         \centering
         \includegraphics[width=\textwidth]{126FFT.eps}
         \caption{\label{126FFT} The Fast Fourier Transform (FFT) of
-        rule 126's density, showing sharp peaks at 2$^n$.}
+        rule 126's black block density, showing sharp peaks at 2$^n$}
     \end{minipage}
 \end{figure}
 
@@ -109,26 +107,27 @@ Figure~\ref{30density}.
     \begin{minipage}[b]{0.49\textwidth}
         \centering
         \includegraphics[width=\textwidth]{30density.eps}
-        \caption{\label{30density} The Density of rule 30 plotted as a function of time step}
+        \caption{\label{30density} The black block density of rule 30 plotted as a function of time step}
     \end{minipage}
     \hspace{0.5cm}
     \begin{minipage}[b]{0.49\textwidth}
         \centering
         \includegraphics[width=\textwidth]{30FFT.eps}
-        \caption{\label{30FFT} The FFT of rule 30's density. The flat transform is the same as white noise.}
+        \caption{\label{30FFT} The FFT of rule 30's black block density}
     \end{minipage}
 \end{figure}
 
 
 \subsection{Periodic Density Analysis}
 In order to establish whether or not an ECA's black block density
-exhibits periodicity, we chose to look at its the Discrete Fourier
+exhibits periodicity, we chose to look at its Discrete Fourier
 Transform (DFT), specifically the Fast Fourier Transform (FFT), as
 well as its Autocorrelation.
+
 The DFT of a sequence of values is defined as
 
 \begin{equation}
-    \rho_p = \sum_{t=0}^{T-1} \rho_t e^{-2\pi i pt/T} \qquad t =
+    \rho_p = \sum_{t=0}^{T-1} \rho_t e^{-2\pi i pt/T} \qquad p =
     0, 1,\ \ldots\ T,
 \end{equation}
 
@@ -142,5 +141,63 @@ sinusoidal motion with a frequency of $\omega_p$.
 From Figure~\ref{126FFT} we can see that rule 126 has clear sinusoidal
 behavior, especially for values of $p$ that are a power of 2 ($2^n$
 with integer n).
+This is not terribly surprising given the structure of the ECA under
+rule 126 in Figure~\ref{rule126}.
+
 However, Figure~\ref{30FFT} shows that the opposite is true for rule
 30.
+In fact, the density FFT for rule 30 closely resembles that of random
+noise, which should have a flat response as a function of frequency.
+
+Similarly, the Autocorrelation function of a sequence of real values
+is given by
+
+\begin{equation}
+    C_\tau = \frac{1}{T}\sum_{t=0}^{T-1} \rho_t \ \rho_{t-\tau} \qquad
+    \tau = 0, 1,\ \ldots\ T,
+\end{equation}
+
+\noindent where $\rho_t$ is the black block density at a time step
+$t$, $T$ is the total number of time steps, and $\tau$ is an integer
+value of separation in time.
+A high coefficient $C_\tau$ corresponds to a time separation for which
+the density of black blocks is strongly correlated.
+For example, a large value of $C_5$ would suggest that densities
+separated by 5 time steps tend to have approximately the same value,
+while a coefficient close to zero implies that they fluctuate randomly
+around the mean.
+If they are anticorrelated, we would see a negative autocorrelation
+coefficient.
+
+\begin{figure}
+    \begin{minipage}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{126corr.eps}
+        \caption{\label{126corr} The black block density's
+        Autocorrelation for a rule 126 ECA.}
+    \end{minipage}
+    \hspace{0.5cm}
+    \begin{minipage}[b]{0.49\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{30corr.eps}
+        \caption{\label{30corr} The black block density's
+        Autocorrelation for a rule 30 ECA.}
+    \end{minipage}
+\end{figure}
+
+Figure~\ref{126corr} shows that there is a strong correlation between
+densities separated by a time period equal to a power of 2 ($2^n$
+with integer n).
+Again, this is not unexpected given the structure rule 126 imposes and
+the sinusoidal features expressed in its DFT.
+
+Figure~\ref{30corr}, however, has some very interesting features which
+lend a little more insight to rule 30 than its density DFT.
+Despite what appears to be random behavior, there clear correlations
+between densities separated by 8 time steps.
+This is in part be due to the quasi-periodic behavior of the left
+half of rule 30's ECA (see Figure~\ref{rule30}).
+However, the fact that this correlation is also present for time
+separations that are multiples of 8 suggests that its right half
+(which seems to be without structure) is not as random as at first
+glance.
