@@ -27,10 +27,11 @@ Figure~\ref{rule254}.
     \caption{\label{rule254} An ECA governed by rule 254}
 \end{figure}
 
+
 \subsection{Elementary Cellular Automaton Rules}
 The rules which govern the dynamics of Elementary Cellular Automata
 determine how the color of a given cell depends on its own previous
-state and that of its neighbors.
+state and those of its neighbors.
 For example, such a rule may state that if the cell's previous color
 was black, the cell to its right was white, and that to its left was
 black, then the current cell color should be black.
@@ -39,21 +40,36 @@ cells; in other words, the rule should be completely deterministic.
 
 In order to label a given rule, Wolfram outlines a scheme which
 reinterprets a rule's set of dynamic laws as a binary number.
-All possible states of the 3 previous neighboring cells are listed in
-order, and the color of the current cell is represented by a 0 if it
-should be white and a 1 if it should be black.
+All possible states of the three previous neighboring cells are listed
+in order, and the color of the current cell is represented by a 0 if
+it should be white and a 1 if it should be black.
 These zeros and ones can then be concatenated and read in binary.
 A schematic of rule 30, as well as its binary representation is shown
 in Figure~\ref{carule30}.
-
-\subsection{Structure and Complexity}
-Given a rule
 
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{CA_Rule30.eps}
     \caption{\label{carule30} A schematic of rule 30}
 \end{figure}
+
+
+\subsection{Structure and Complexity}
+A particular rule, an initial condition, and boundary conditions
+completely define the dynamics of a given ECA.
+Considering how simple these definitions are, ECAs can exhibit an
+unexpected complexity and structure.
+Rule 126 (Figure~\ref{rule126}) has a startling resemblance to the
+famous Serpinski Triangle, as do several other rules given similar
+initial conditions.
+One might expect such an well-ordered system given the simplicity of
+the ECA definition.
+Rule 30, shown in Figure~\ref{rule30}, on the other hand,  has no
+apparent structure at all, and in many ways its dynamics seem random,
+even on a small scale.
+
+In the following sections we will present some of our findings while
+exploring these discrete systems.
 
 \begin{figure}
     \begin{minipage}[b]{0.49\textwidth}
