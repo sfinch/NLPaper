@@ -1,1 +1,8 @@
 \section{Conclusion}
+
+ECA show the remarkable property that simple, completely deterministic rules can lead to complex and chaotic behavior.  
+
+\subsection{Application in Cryptography}
+
+One possible application of ECA is cryptography.  Cryptography relies on having an encrypting function that is easy to computationally compute in one direction, but inverse is extremely computationally intensive without knowledge of the key.  ECA fits this description: a binary sequence my be encrypted by applying an ECA rule and iterating over several time steps.  Determining the inverse is much harder since each cell is not uniquely determined, but depends on its also undermined neighbor.  Furthermore, the sensitivity to initial conditions implies that a one bit error in decoding the message will affect the entire message after many iterations.  To efficiently decode the message, one would use a key containing additional information, such as the ECA rule used, the format of initial conditions, and number of iterations.  The inverse of ECA then becomes solvable on a reasonable time scale.  
+
