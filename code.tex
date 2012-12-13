@@ -2,6 +2,7 @@
 \section{Code}
 
 \subsection{Density and FFT in \sc{Mathematica}}
+\small
 \begin{verbatim}
 
 n = 1024;
@@ -19,8 +20,10 @@ ListLinePlot[Abs[Take[Fourier[sumBlacks], 150]],  PlotRange -> {0, 1},
   InterpolationOrder -> 2, AxesLabel -> {"Time steps", "FFT"}]
 
 \end{verbatim}
+\normalsize
 
 \subsection{Mapping with PBC in \sc{C++}}
+\small
 \begin{verbatim}
 
 // PBC.cxx
@@ -110,3 +113,4 @@ int main(int argc, char *argv[]) {
 }
 
 \end{verbatim}
+\normalsize
