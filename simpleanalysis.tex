@@ -1,1 +1,64 @@
 \section{Simple Analysis}
+
+% TODO BETTER TITLE
+
+An Elementary Cellular Automaton with $n$ sites per time step has
+$n$ degrees of freedom.
+As one studies ECAs with larger $n$ values, it becomes a daunting
+task to track the state of each site at each time step, and an
+analysis of the time evolution of the system as a whole becomes more
+meaningful.
+In order to study the general behavior of the ECA systems, we wanted
+to define an observable which collapsed these $n$ degrees of freedom
+into one number whose value could be traced through many time steps.
+However, there are only so many such observables for such simple
+systems.
+One ought to choose an observable whose value is meaningful for a wide
+variety of initial conditions and boundary condition constraints.
+
+
+\subsection{Defining an Observable}
+
+We chose to study on the density of black blocks as a convenient
+method for collapsing the information encoded in an $n$-site ECA into
+one value per time step.
+For ECAs with periodic or fixed boundary conditions, the density of
+black blocks is straightforward:
+
+\begin{equation}
+    \rho = \frac{n_{black}}{n},
+\end{equation}
+
+\noindent where $n$ is the number of sites in the ECA.
+
+One must be careful in the case of ECAs without boundary conditions
+because the extent of the ECA is essentially infinite, and the above
+definition of the black block density is not well-defined.
+However, because the ECA rules only allow the state of a block to
+depend on the previous states of its immediate neighbors, by choosing
+an initial condition of one black block there can be no black blocks
+outside of the triangle defined by $2t+1$, where $t$ is the number of
+time steps since the initial state.
+Treating $2t+1$ as the effective size of the Cellular Automaton, the
+density can then be redefined as
+
+\begin{equation}
+    \rho = \frac{n_{black}}{(2t+1)}.
+\end{equation}
+
+
+\subsection{Density Time Evolution}
+% TODO MAXIMUM
+For ECAs with periodic or fixed boundary conditions, there is a
+maximum number of states available to the system: if there are $n$
+sites and each must have a value of 0 or 1, there will be $2^n$
+states.
+As such, after a maximum of $2^n$ time steps the system must return to
+a state that it has visited previously.
+
+However, ECAs with no boundaries have access to an infinite number of
+states.
+
+ - FFT and Autocorrelation of density for different rules
+
+ - Periodic Boundary Conditions
