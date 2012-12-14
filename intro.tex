@@ -1,32 +1,75 @@
 \section{Introduction}
+Discrete nonlinear systems can display a surprising amount of
+complexity with a small number of rules and parameters.
+For example, the logistic map is comprised of one discrete polynomial
+equation with one continuous parameter, but its dynamics are chaotic
+over a wide range of parameter values and initial conditions.
+In this paper we have chosen to study another class of simple discrete
+systems which express complex, nonlinear behavior: Elementary Cellular
+Automata (ECAs).
+We present a brief introduction to ECAs, an anlysis based on an
+observable defined for an ECA system, and an interpretation of ECA
+rules themselves as nonlinear discrete maps.
 
-% TODO
-See the awesome Figure~\ref{110_map}.
-
-Something about nonlinear dynamics in general and how discrete
-nonlinear systems can display complexity with a small number of
-parameters--e.g. logistic map.
 
 \subsection{Elementary Cellular Automata}
-% TODO
-
 An Elementary Cellular Automaton (ECA) is defined in Stephen Wolfram's
-\emph{A New Kind of Science}~\cite{anks}
+\emph{A New Kind of Science}~\cite{anks} as ``a line of cells, each
+colored either black or white. At every step there is then a definite
+rule that determines the color of a given cell from the color of that
+cell and its immediate left and right neighbors on the step before.''
+An example of an Elementary Cellular Automaton is shown in
+Figure~\ref{rule254}.
 
-\subsection{Automata Rules}
-% TODO
-- Rules and rule numbering
-
-\subsection{Examples}
-% TODO
-- Examples (many figures)
-
-% TODO
 \begin{figure}
     \centering
-    \includegraphics[width=0.49\textwidth]{110_13.eps}
-    \caption{\label{110_map} Fractal map for rule 110 and a 13-site grid.}
+    \includegraphics[width=.66\textwidth]{rule254.eps}
+    \caption{\label{rule254} An ECA governed by rule 254}
 \end{figure}
+
+
+\subsection{Elementary Cellular Automaton Rules}
+The rules which govern the dynamics of Elementary Cellular Automata
+determine how the color of a given cell depends on its own previous
+state and those of its neighbors.
+For example, such a rule may state that if the cell's previous color
+was black, the cell to its right was white, and that to its left was
+black, then the current cell color should be black.
+A rule should cover all possible preceding states of neighboring
+cells; in other words, the rule should be completely deterministic.
+
+In order to label a given rule, Wolfram outlines a scheme which
+reinterprets a rule's set of dynamic laws as a binary number.
+All possible states of the three previous neighboring cells are listed
+in order, and the color of the current cell is represented by a 0 if
+it should be white and a 1 if it should be black.
+These zeros and ones can then be concatenated and read in binary.
+A schematic of rule 30 and its binary representation are shown
+in Figure~\ref{carule30}.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{CA_Rule30.eps}
+    \caption{\label{carule30} A schematic of rule 30}
+\end{figure}
+
+
+\subsection{Structure and Complexity}
+A particular rule, an initial condition, and boundary conditions
+completely define the dynamics of a given ECA.
+Considering how simple these definitions are, ECAs can exhibit an
+unexpected complexity and structure.
+Rule 126 (Figure~\ref{rule126}) has a startling resemblance to the
+famous Sierpinski triangle, as do several other rules given similar
+initial conditions.
+One might expect such an well-ordered system given the simplicity of
+the ECA definition.
+Rule 30, shown in Figure~\ref{rule30}, on the other hand,  has no
+apparent structure at all, and in many ways its dynamics seem random,
+even on a small scale.
+
+In the following sections we will present some of our findings while
+exploring these discrete systems.
 
 \begin{figure}
     \begin{minipage}[b]{0.49\textwidth}
@@ -39,35 +82,5 @@ An Elementary Cellular Automaton (ECA) is defined in Stephen Wolfram's
         \centering
         \includegraphics[width=\textwidth]{rule30.eps}
         \caption{\label{rule30} Rule 30}
-    \end{minipage}
-\end{figure}
-
-
-\begin{figure}
-    \begin{minipage}[b]{0.49\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{126density.eps}
-        \caption{\label{126density} The Density of rule 126 plotted as a function of time step}
-    \end{minipage}
-    \hspace{0.5cm}
-    \begin{minipage}[b]{0.49\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{126FFT.eps}
-        \caption{\label{126FFT} The FFT of rule 126's density, showing sharp peaks at 2$^n$.}
-    \end{minipage}
-\end{figure}
-
-
-\begin{figure}
-    \begin{minipage}[b]{0.49\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{30density.eps}
-        \caption{\label{30density} The Density of rule 30 plotted as a function of time step}
-    \end{minipage}
-    \hspace{0.5cm}
-    \begin{minipage}[b]{0.49\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{30FFT.eps}
-        \caption{\label{30FFT} The FFT of rule 30's density.  The flat transform is the same as white noise.}
     \end{minipage}
 \end{figure}
