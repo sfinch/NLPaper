@@ -134,7 +134,7 @@ sinusoidal motion with a frequency of $\omega_p$.
 
 From Figure~\ref{126FFT} we can see that rule 126 has clear sinusoidal
 behavior, especially for values of $p$ that are a power of 2 ($2^n$
-with integer n).
+with integer $n$).
 This is not terribly surprising given the structure of the ECA under
 rule 126 in Figure~\ref{rule126}.
 
@@ -180,14 +180,17 @@ coefficient.
 \end{figure}
 
 Figure~\ref{126corr} shows that there is a strong correlation between
-densities separated by a time period equal to a power of 2 ($2^n$
-with integer n).
+densities separated by a time period equal to a power of 2.
 Again, this is not unexpected given the structure rule 126 imposes and
 the sinusoidal features expressed in its DFT.
+Furthermore, the correlation is non-zero at short time scales ($<50$ time steps) 
+but averages to zero over longer time scales.  
+
+
 
 Figure~\ref{30corr}, however, has some very interesting features which
 lend a little more insight to rule 30 than its density DFT.
-Despite what appears to be random behavior, there clear correlations
+Despite what appears to be random behavior, there are clear correlations
 between densities separated by 8 time steps.
 This is in part be due to the quasi-periodic behavior of the left
 half of rule 30's ECA (see Figure~\ref{rule30}).
@@ -195,3 +198,5 @@ However, the fact that this correlation is also present for time
 separations that are multiples of 8 suggests that its right half
 (which seems to be without structure) is not as random as at first
 glance.
+The short term autocorrelation of rule 30, which is approximately zero,
+contrasts with that of rule 126, which is positive at short time scales.
